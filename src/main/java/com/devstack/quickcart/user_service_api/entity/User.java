@@ -16,7 +16,7 @@ public class User {
     @Id
     @Column(unique = true, nullable = false, name = "user_id")
     private String userId;
-    @Column(unique = true, nullable = false, name = "user_id", length = 100)
+    @Column(unique = true, nullable = false, name = "username", length = 100)
     private String username;
     @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
