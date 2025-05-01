@@ -1,16 +1,16 @@
 package com.devstack.quickcart.user_service_api.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Table(name = "user")
 public class User {
     @Id
@@ -24,9 +24,6 @@ public class User {
     private String lastName;
     @Column(name = "active_status", columnDefinition = "TINYINT")
     private boolean activeState;
-    @Column(name = "otp", nullable = false)
-    private int otp;
-
     //===================
     @OneToOne(mappedBy = "user")
     private ShippingAddress shippingAddress;
@@ -38,5 +35,25 @@ public class User {
     //===================
     @OneToOne(mappedBy = "user")
     private UserAvatar userAvatar;
+
+    @Column(name = "is_account_non_expired", columnDefinition = "TINYINT", nullable = false)
+    private Boolean isAccountNonExpired;
+
+    @Column(name = "is_email_verified", columnDefinition = "TINYINT", nullable = false)
+    private Boolean isEmailVerified;
+
+    @Column(name = "is_account_non_locked", columnDefinition = "TINYINT", nullable = false)
+    private Boolean isAccountNonLocked;
+
+    @Column(name = "is_enabled", columnDefinition = "TINYINT", nullable = false)
+    private Boolean isEnabled;
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date", nullable = false, columnDefinition = "DATETIME")
+    private Date createdDate;
+
+    @OneToOne(mappedBy = "systemUser", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Otp otp;
 
 }

@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @Data
+@Builder
 public class ResponseUserDto {
     private String username;
     private String firstName;
