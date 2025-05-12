@@ -10,6 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
+@ToString
 public class RequestUserDto {
 
     private String email;

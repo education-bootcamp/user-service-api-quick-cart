@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(RequestUserDto dto) throws IOException {
-
+        System.out.println(dto.toString());
         String userId = "";
         String otpId = "";
         Keycloak keycloak = null;
@@ -142,8 +142,9 @@ public class UserServiceImpl implements UserService {
                     .systemUser(savedUser)
                     .build();
             otpRepo.save(otp);
-            emailService.sendUserSignupVerificationCode(dto.getEmail(),
-                    "Verify Your Email Address for Developers Stack Access", otp.getCode());
+
+           /* emailService.sendUserSignupVerificationCode(dto.getEmail(),
+                    "Verify Your Email Address for Developers Stack Access", otp.getCode());*/
         }
     }
 
